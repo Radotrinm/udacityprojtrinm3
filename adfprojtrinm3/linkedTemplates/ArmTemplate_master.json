@@ -1,0 +1,90 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfprojtrinm3"
+		},
+		"ls_adlstrinm3_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adlstrinm3'"
+		},
+		"ls_sqldb_db_nycpayroll_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sqldb_db_nycpayroll'"
+		},
+		"ls_synapse_projtrinm3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_synapse_projtrinm3'"
+		},
+		"ls_adlstrinm3_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageprojtrinm3.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adfprojtrinm3_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_adlstrinm3_accountKey": {
+						"value": "[parameters('ls_adlstrinm3_accountKey')]"
+					},
+					"ls_sqldb_db_nycpayroll_connectionString": {
+						"value": "[parameters('ls_sqldb_db_nycpayroll_connectionString')]"
+					},
+					"ls_synapse_projtrinm3_connectionString": {
+						"value": "[parameters('ls_synapse_projtrinm3_connectionString')]"
+					},
+					"ls_adlstrinm3_properties_typeProperties_url": {
+						"value": "[parameters('ls_adlstrinm3_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adfprojtrinm3_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfprojtrinm3_ArmTemplate_0')]"
+			]
+		}
+	]
+}
