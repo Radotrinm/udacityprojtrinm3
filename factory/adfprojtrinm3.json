@@ -1,0 +1,9 @@
+{
+	"name": "adfprojtrinm3",
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "85288232-fcf8-44ea-8d17-2ea3b8740aa4",
+		"tenantId": "3523a348-310f-4cfe-848a-370eb03bd726"
+	}
+}

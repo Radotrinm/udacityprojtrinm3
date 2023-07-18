@@ -1,0 +1,41 @@
+{
+	"name": "pipeline - Title Csv to Synapse",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow Title Csv to Synapse",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow Title Csv to Synapse",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "ls_adlstrinm3",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adlsnycpayrolltrinm3/dirstaging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-07-17T16:55:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

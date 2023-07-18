@@ -1,0 +1,26 @@
+{
+	"name": "ds_synapse_agency",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_synapse_projtrinm3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "AgencyID",
+				"type": "varchar"
+			},
+			{
+				"name": "AgencyName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimAgency"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
